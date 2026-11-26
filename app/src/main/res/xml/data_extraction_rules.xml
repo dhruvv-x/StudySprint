@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Backup policy (Android 12+):
+    - Settings (DataStore: theme, daily goal, break length) are backed up and restored.
+    - The Room database (sessions, tasks, history) is NOT backed up. An unfinished session
+      stores wall-clock timestamps, so restoring it on another device would produce
+      misleading elapsed times, and a database copied without its -wal file can be inconsistent.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="file" path="datastore/" />
+        <exclude domain="database" path="." />
+    </cloud-backup>
+    <device-transfer>
+        <include domain="file" path="datastore/" />
+        <exclude domain="database" path="." />
+    </device-transfer>
+</data-extraction-rules>
